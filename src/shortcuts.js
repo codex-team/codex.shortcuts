@@ -2,7 +2,7 @@
  * CodeX ShortCut module
  * Used to create shortcuts on element
  *
- * @copyright CodeX Team <team@ifmo.su>
+ * @copyright CodeX <team@ifmo.su>
  * @license MIT https://github.com/codex-team/dispatcher/LICENSE
  * @author @khaydarovm https://github.com/khaydarov
  * @version 1.0.0
@@ -86,7 +86,6 @@ const supportedCommands = {
  * @property {Function} callback - custom user function
  */
 export default class ShortCut {
-
     /**
      * Create new shortcut
      * @param {ShortCut} shortcut
@@ -137,23 +136,23 @@ export default class ShortCut {
      */
     execute(event) {
         let cmdKey = (event.ctrlKey || event.metaKey),
-            shiftKey = event.shiftKey,
-            altKey = event.altKey,
-            passed = {
-                'CMD': cmdKey,
-                'SHIFT': shiftKey,
-                'ALT': altKey
-            };
+                shiftKey = event.shiftKey,
+                altKey = event.altKey,
+                passed = {
+                    'CMD': cmdKey,
+                    'SHIFT': shiftKey,
+                    'ALT': altKey
+                };
 
         let command,
-            allCommandsPassed = true;
+                allCommandsPassed = true;
 
         for (command in this.commands) {
             allCommandsPassed = allCommandsPassed && passed[command];
         }
 
         let key,
-            allKeysPassed = true;
+                allKeysPassed = true;
 
         for (key in this.keys) {
             allKeysPassed = allKeysPassed && ( event.keyCode === keyCodes[key] );

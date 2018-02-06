@@ -1,7 +1,7 @@
 /**
  * Webpack config
  *
- * @author CodeX Team (team@ifmo.su)
+ * @author CodeX Team (team@ifmo.su) https://github.com/codex-team/webpack-build-config
  * @copyright CodeX 2017
  */
 
@@ -36,7 +36,6 @@ var output = {
     library: pkg.exportModuleName,
     libraryTarget: 'umd',
 };
-
 
 var useModule = {
     rules: [
