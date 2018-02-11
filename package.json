@@ -1,7 +1,7 @@
 {
   "name": "@codexteam/shortcuts",
   "version": "1.0.0",
-  "description": "library for handling keyboard shortcuts",
+  "description": "Library for handling keyboard shortcuts",
   "main": "./lib/shortcuts.js",
   "directories": {
     "lib": "lib"
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/codex-team/codex.shortcuts.git"
   },
   "author": "CodeX (https://ifmo.su)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/codex-team/codex.shortcuts/issues"
   },
@@ -24,8 +24,6 @@
     "babel": "^6.23.0",
     "babel-env": "^2.4.1",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.17.0",
     "eslint-loader": "^1.9.0",
     "webpack": "^3.10.0"

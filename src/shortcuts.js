@@ -1,5 +1,5 @@
 /**
- * CodeX ShortCut module
+ * CodeX Shortcut module
  * Used to create shortcuts on element
  *
  * @copyright CodeX <team@ifmo.su>
@@ -8,7 +8,7 @@
  * @version 1.0.0
  *
  * @example
- * new ShortCut({
+ * new Shortcut({
  *   name : 'CMD+S',
  *   on : document.body,
  *   callback : function(event) {
@@ -75,20 +75,20 @@ const supportedCommands = {
 };
 
 /**
- * @class ShortCut
+ * @class Shortcut
  * @classdesc Callback will be fired with two params:
  *   - event: standard keyDown param
  *   - target: element which registered on shortcut creation
  *
- * @typedef {ShortCut} ShortCut
+ * @typedef {ShortcutConfig} ShortcutConfig
  * @property {String} name - shortcut name
  * @property {Element} on - element that passed on shortcut creation
  * @property {Function} callback - custom user function
  */
-export default class ShortCut {
+export default class Shortcut {
     /**
      * Create new shortcut
-     * @param {ShortCut} shortcut
+     * @param {ShortcutConfig} shortcut
      * @constructor
      */
     constructor(shortcut) {
@@ -107,10 +107,8 @@ export default class ShortCut {
     }
 
     /**
-     * parses string to get shortcut commands in uppercase
+     * Parses string to get shortcut commands in uppercase
      * @param {String} shortcut
-     *
-     * @return {Array} keys
      */
     parseShortcutName(shortcut) {
         shortcut = shortcut.split('+');
@@ -135,31 +133,31 @@ export default class ShortCut {
      * @param event
      */
     execute(event) {
-        let cmdKey = (event.ctrlKey || event.metaKey),
-                shiftKey = event.shiftKey,
-                altKey = event.altKey,
-                passed = {
-                    'CMD': cmdKey,
-                    'SHIFT': shiftKey,
-                    'ALT': altKey
-                };
+        let cmdKey = event.ctrlKey || event.metaKey,
+            shiftKey = event.shiftKey,
+            altKey = event.altKey,
+            passed = {
+                'CMD': cmdKey,
+                'SHIFT': shiftKey,
+                'ALT': altKey
+            };
 
         let command,
-                allCommandsPassed = true;
+            allCommandsPassed = true;
 
         for (command in this.commands) {
             allCommandsPassed = allCommandsPassed && passed[command];
         }
 
         let key,
-                allKeysPassed = true;
+            allKeysPassed = true;
 
         for (key in this.keys) {
             allKeysPassed = allKeysPassed && ( event.keyCode === keyCodes[key] );
         }
 
         if (allCommandsPassed && allKeysPassed) {
-            this.callback.call(null, event);
+            this.callback(event);
         }
     }
 
