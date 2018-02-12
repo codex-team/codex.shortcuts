@@ -1,7 +1,7 @@
 /**
  * Webpack config
  *
- * @author CodeX Team (team@ifmo.su) https://github.com/codex-team/webpack-build-config
+ * @author CodeX (team@ifmo.su) https://github.com/codex-team/webpack-build-config
  * @copyright CodeX 2017
  */
 

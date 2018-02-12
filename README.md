@@ -65,5 +65,15 @@ other words we pass as keys and special commands. Special commands are:
 
 To contribute, please fork, add your patch and tests for it (in the test/ folder) and submit a pull request.
 
-CodeX is a team of web-development, design and marketing. 
-We build a team learning how to develop full-valued projects on the world market.
+CodeX is a team united of passionate people who loves web development, design and marketing.  
+We build a full-valued projects on the world area.
+
+Feel free to give us a feedback [team@ifmo.su](team@ifmo.su)
+
+Follow us on:
+
+VK: [https://vk.com/codex_team](https://vk.com/codex_team)
+
+Telegram: [https://t.me/codex_team](https://t.me/codex_team)
+
+Instagram: [https://www.instagram.com/codex_team](https://www.instagram.com/codex_team)
