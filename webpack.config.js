@@ -55,12 +55,9 @@ var config = {
         test : /\.js$/,
         exclude: /node_modules/,
         use : [
-          {
-            loader: 'eslint-loader',
-            options: {
-              fix: true
-            }
-          },
+          // {
+          //   loader: 'eslint-loader',
+          // },
           {
             loader: 'babel-loader',
             options: {

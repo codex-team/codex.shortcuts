@@ -5,114 +5,23 @@
  * @author CodeX (https://codex.so)
  * @version 1.1.0
  */
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["Shortcut"] = factory();
-	else
-		root["Shortcut"] = factory();
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/shortcuts.js");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./src/shortcuts.js":
-/*!**************************!*\
-  !*** ./src/shortcuts.js ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("/**\n * CodeX Shortcut module\n * Used to create shortcuts on element\n *\n * @copyright CodeX <team@codex.so>\n * @license MIT https://github.com/codex-team/dispatcher/LICENSE\n * @author @khaydarovm https://github.com/khaydarov\n * @version 1.0.0\n *\n * @example\n * new Shortcut({\n *   name : 'CMD+S',\n *   on : document.body,\n *   callback : function(event) {\n *       // handle CMD+S\n *   }\n * });\n */\n\n/**\n * @typedef {ShortcutConfig} ShortcutConfig\n * @property {String} name - shortcut name\n * @property {Element} on - element that passed on shortcut creation\n * @property {Function} callback - custom user function\n */\n\n/**\n * List of key codes\n */\nvar keyCodes = {\n  '0': 48,\n  '1': 49,\n  '2': 50,\n  '3': 51,\n  '4': 52,\n  '5': 53,\n  '6': 54,\n  '7': 55,\n  '8': 56,\n  '9': 57,\n  'A': 65,\n  'B': 66,\n  'C': 67,\n  'D': 68,\n  'E': 69,\n  'F': 70,\n  'G': 71,\n  'H': 72,\n  'I': 73,\n  'J': 74,\n  'K': 75,\n  'L': 76,\n  'M': 77,\n  'N': 78,\n  'O': 79,\n  'P': 80,\n  'Q': 81,\n  'R': 82,\n  'S': 83,\n  'T': 84,\n  'U': 85,\n  'V': 86,\n  'W': 87,\n  'X': 88,\n  'Y': 89,\n  'Z': 90,\n  'BACKSPACE': 8,\n  'ENTER': 13,\n  'ESCAPE': 27,\n  'LEFT': 37,\n  'UP': 38,\n  'RIGHT': 39,\n  'DOWN': 40,\n  'INSERT': 45,\n  'DELETE': 46\n};\nvar supportedCommands = {\n  'SHIFT': ['SHIFT'],\n  'CMD': ['CMD', 'CONTROL', 'COMMAND', 'WINDOWS', 'CTRL'],\n  'ALT': ['ALT', 'OPTION']\n}; //\n// /**\n//  * @class Shortcut\n//  * @classdesc Callback will be fired with two params:\n//  *   - event: standard keyDown param\n//  *   - target: element which registered on shortcut creation\n//  */\n// export default class Shortcut {\n//   /**\n//    * @constructor\n//    *\n//    * Create new shortcut\n//    * @param {ShortcutConfig} shortcut\n//    */\n//   constructor(shortcut) {\n//     this.commands = {};\n//     this.keys = {};\n//\n//     this.parseShortcutName(shortcut.name);\n//\n//     this.element = shortcut.on;\n//     this.callback = shortcut.callback;\n//\n//     this.executeShortcut = (event) => {\n//       this.execute(event);\n//     };\n//     this.element.addEventListener('keydown', this.executeShortcut, false);\n//   }\n//\n//   /**\n//    * Parses string to get shortcut commands in uppercase\n//    * @param {String} shortcut\n//    */\n//   parseShortcutName(shortcut) {\n//     shortcut = shortcut.split('+');\n//\n//     for (let key = 0; key < shortcut.length; key++) {\n//       shortcut[key] = shortcut[key].toUpperCase();\n//\n//       let isCommand = false;\n//\n//       for (let command in supportedCommands) {\n//         if (supportedCommands[command].includes(shortcut[key])) {\n//           this.commands[command] = true;\n//           isCommand = true;\n//           break;\n//         }\n//       }\n//\n//       if (!isCommand) {\n//         this.keys[shortcut[key]] = true;\n//       }\n//     }\n//   }\n//\n//   /**\n//    * Check all passed commands and keys before firing callback\n//    * @param event\n//    */\n//   execute(event) {\n//     let cmdKey = event.ctrlKey || event.metaKey,\n//       shiftKey = event.shiftKey,\n//       altKey = event.altKey,\n//       passed = {\n//         'CMD': cmdKey,\n//         'SHIFT': shiftKey,\n//         'ALT': altKey\n//       };\n//\n//     let command,\n//       allCommandsPassed = true;\n//\n//     for (command in this.commands) {\n//       allCommandsPassed = allCommandsPassed && passed[command];\n//     }\n//\n//     let key,\n//       allKeysPassed = true;\n//\n//     for (key in this.keys) {\n//       allKeysPassed = allKeysPassed && (event.keyCode === keyCodes[key]);\n//     }\n//\n//     if (allCommandsPassed && allKeysPassed) {\n//       this.callback(event);\n//     }\n//   }\n//\n//   /**\n//    * Destroy shortcut: remove listener from element\n//    */\n//   remove() {\n//     this.element.removeEventListener('keydown', this.executeShortcut);\n//   }\n// }\n\n//# sourceURL=webpack://Shortcut/./src/shortcuts.js?");
-
-/***/ })
-
-/******/ })["default"];
-});
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.Shortcut=t():e.Shortcut=t()}(window,function(){return function(n){var r={};function o(e){if(r[e])return r[e].exports;var t=r[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}return o.m=n,o.c=r,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,"a",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p="",o(o.s=0)}([function(e,t,n){"use strict";function r(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}n.r(t),n.d(t,"default",function(){return u});
+/**
+ * CodeX Shortcut module
+ * Used to create shortcuts on element
+ *
+ * @copyright CodeX <team@codex.so>
+ * @license MIT https://github.com/codex-team/dispatcher/LICENSE
+ * @author @khaydarovm https://github.com/khaydarov
+ * @version 1.0.0
+ *
+ * @example
+ * new Shortcut({
+ *   name : 'CMD+S',
+ *   on : document.body,
+ *   callback : function(event) {
+ *       // handle CMD+S
+ *   }
+ * });
+ */
+var i={0:48,1:49,2:50,3:51,4:52,5:53,6:54,7:55,8:56,9:57,A:65,B:66,C:67,D:68,E:69,F:70,G:71,H:72,I:73,J:74,K:75,L:76,M:77,N:78,O:79,P:80,Q:81,R:82,S:83,T:84,U:85,V:86,W:87,X:88,Y:89,Z:90,BACKSPACE:8,ENTER:13,ESCAPE:27,LEFT:37,UP:38,RIGHT:39,DOWN:40,INSERT:45,DELETE:46},o={SHIFT:["SHIFT"],CMD:["CMD","CONTROL","COMMAND","WINDOWS","CTRL"],ALT:["ALT","OPTION"]},u=function(){function n(e){var t=this;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),this.commands={},this.keys={},this.parseShortcutName(e.name),this.element=e.on,this.callback=e.callback,this.executeShortcut=function(e){t.execute(e)},this.element.addEventListener("keydown",this.executeShortcut,!1)}return function(e,t,n){t&&r(e.prototype,t),n&&r(e,n)}(n,[{key:"parseShortcutName",value:function(e){e=e.split("+");for(var t=0;t<e.length;t++){e[t]=e[t].toUpperCase();var n=!1;for(var r in o)if(o[r].includes(e[t])){n=this.commands[r]=!0;break}n||(this.keys[e[t]]=!0)}}},{key:"execute",value:function(e){var t,n={CMD:e.ctrlKey||e.metaKey,SHIFT:e.shiftKey,ALT:e.altKey},r=!0;for(t in this.commands)r=r&&n[t];var o,u=!0;for(o in this.keys)u=u&&e.keyCode===i[o];r&&u&&this.callback(e)}},{key:"remove",value:function(){this.element.removeEventListener("keydown",this.executeShortcut)}}]),n}()}]).default});
