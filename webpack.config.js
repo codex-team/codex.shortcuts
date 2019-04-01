@@ -7,6 +7,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 /**
@@ -27,7 +28,7 @@ var config = {
    *
    * filename       - main bundle file from package.json
    * library        - module name from package.json
-   * libraryTarget  - "umd" is a way for your library to work with all the module
+   * libraryTarget  - 'umd' is a way for your library to work with all the module
    *                  definitions (and where aren't modules at all).
    *                  It will work with CommonJS, AMD and as global variable.
    */
@@ -42,8 +43,8 @@ var config = {
    * Tell webpack what directories should be searched when resolving modules.
    */
   resolve: {
-      modules: [path.join(__dirname, 'src'),  'node_modules'],
-      extensions: ['.js']
+    modules: [path.join(__dirname, 'src'),  'node_modules'],
+    extensions: [ '.js' ]
   },
   module: {
     rules: [
@@ -56,6 +57,9 @@ var config = {
         use : [
           {
             loader: 'eslint-loader',
+            options: {
+              fix: true
+            }
           },
           {
             loader: 'babel-loader',
@@ -68,9 +72,6 @@ var config = {
     ]
   },
   plugins: [
-    /** Block biuld if errors found */
-    new webpack.NoEmitOnErrorsPlugin(),
-
     /**
      * Add comments before output file lib/moduleDispatcher.js
      * @type {String} — bundleComment
@@ -79,6 +80,10 @@ var config = {
       banner: bundleComment
     })
   ],
+
+  optimization: {
+    minimizer: [ new UglifyJsPlugin() ],
+  },
 };
 
 module.exports = config;

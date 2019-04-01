@@ -1,11 +1,8 @@
 {
   /** Enable ES6 features */
   "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "classes": true
-    }
+    "ecmaVersion": 2017,
+    "sourceType": "module"
   },
   "rules": {
 
@@ -22,7 +19,7 @@
     "no-shadow": 2,
     "no-undef-init": 2,
     "no-undef": 2,
-    "no-unused-vars": 1,
+    "no-unused-vars": 0,
 
     /** Style */
     "array-bracket-spacing": [2, "never", {
@@ -30,10 +27,12 @@
       "objectsInArrays": true,
       "arraysInArrays": true
     }],
-    "quotes": [1, "single", "avoid-escape"],
+    "quotes": [2, "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
     "eqeqeq": 0,
     "brace-style": [2, "1tbs"],
-
     "comma-spacing": [2, {
       "before": false,
       "after": true
@@ -55,31 +54,39 @@
     }],
     "semi": [2, "always"],
     "indent": [2, 2, {
-      "SwitchCase": 1,
-      "VariableDeclarator": 2
+      "SwitchCase": 1
     }],
     "camelcase": [2, {
       "properties": "always"
     }],
-    "newline-after-var": [1, "always"],
-    "require-jsdoc": ["error", {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": true,
-        "ArrowFunctionExpression": false
-      }
-    }]
+    "newline-after-var": [1, "always"]
 
   },
-  "globals": {
+  "globals":{
     "document": true,
     "module": true,
     "require": true,
     "window": true,
-    "console": true,
-    "define": true,
+    "console" : true,
+    "codex": true,
+    "VERSION" : true,
+    "Promise" : true,
+    "MutationObserver": true,
     "FormData": true,
-    "exports": true
+    "XMLHttpRequest": true,
+    "ActiveXObject": true,
+    "RegExp": true,
+    "Module": true,
+    "Node": true,
+    "Element": true,
+    "DocumentFragment": true,
+    "Proxy": true,
+    "Symbol": true,
+    "$": true,
+    "_": true,
+    "setTimeout": true,
+    "process": true,
+    "__dirname": true,
+    "Map": true
   }
 }

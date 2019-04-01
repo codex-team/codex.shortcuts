@@ -2,7 +2,7 @@
  * CodeX Shortcut module
  * Used to create shortcuts on element
  *
- * @copyright CodeX <team@ifmo.su>
+ * @copyright CodeX <team@codex.so>
  * @license MIT https://github.com/codex-team/dispatcher/LICENSE
  * @author @khaydarovm https://github.com/khaydarov
  * @version 1.0.0
@@ -15,6 +15,13 @@
  *       // handle CMD+S
  *   }
  * });
+ */
+
+/**
+ * @typedef {ShortcutConfig} ShortcutConfig
+ * @property {String} name - shortcut name
+ * @property {Element} on - element that passed on shortcut creation
+ * @property {Function} callback - custom user function
  */
 
 /**
@@ -69,8 +76,8 @@ const keyCodes = {
 };
 
 const supportedCommands = {
-  'CMD' : ['CMD', 'CONTROL', 'COMMAND', 'WINDOWS', 'CTRL'],
   'SHIFT' : [ 'SHIFT' ],
+  'CMD' : ['CMD', 'CONTROL', 'COMMAND', 'WINDOWS', 'CTRL'],
   'ALT' : ['ALT', 'OPTION']
 };
 
@@ -79,17 +86,13 @@ const supportedCommands = {
  * @classdesc Callback will be fired with two params:
  *   - event: standard keyDown param
  *   - target: element which registered on shortcut creation
- *
- * @typedef {ShortcutConfig} ShortcutConfig
- * @property {String} name - shortcut name
- * @property {Element} on - element that passed on shortcut creation
- * @property {Function} callback - custom user function
  */
 export default class Shortcut {
   /**
+   * @constructor
+   *
    * Create new shortcut
    * @param {ShortcutConfig} shortcut
-   * @constructor
    */
   constructor(shortcut) {
     this.commands = {};
@@ -117,6 +120,7 @@ export default class Shortcut {
       shortcut[key] = shortcut[key].toUpperCase();
 
       let isCommand = false;
+
       for (let command in supportedCommands) {
         if (supportedCommands[command].includes(shortcut[key])) {
           this.commands[command] = true;
@@ -145,23 +149,23 @@ export default class Shortcut {
         'ALT': altKey
       };
 
-      let command,
-        allCommandsPassed = true;
+    let command,
+      allCommandsPassed = true;
 
-      for (command in this.commands) {
-        allCommandsPassed = allCommandsPassed && passed[command];
-      }
+    for (command in this.commands) {
+      allCommandsPassed = allCommandsPassed && passed[command];
+    }
 
-      let key,
-        allKeysPassed = true;
+    let key,
+      allKeysPassed = true;
 
-      for (key in this.keys) {
-        allKeysPassed = allKeysPassed && ( event.keyCode === keyCodes[key] );
-      }
+    for (key in this.keys) {
+      allKeysPassed = allKeysPassed && (event.keyCode === keyCodes[key]);
+    }
 
-      if (allCommandsPassed && allKeysPassed) {
-        this.callback(event);
-      }
+    if (allCommandsPassed && allKeysPassed) {
+      this.callback(event);
+    }
   }
 
   /**
