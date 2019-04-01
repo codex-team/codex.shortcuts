@@ -1,14 +1,13 @@
 {
   "name": "@codexteam/shortcuts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Library for handling keyboard shortcuts",
-  "main": "./lib/shortcuts.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "./dist/shortcuts.js",
   "scripts": {
     "test": "test",
-    "build": "webpack"
+    "build:dev": "webpack --mode development",
+    "build:watch": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -21,11 +20,21 @@
   },
   "homepage": "https://github.com/codex-team/codex.shortcuts#readme",
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-env": "^2.4.1",
-    "babel-loader": "^7.1.2",
-    "eslint": "^4.17.0",
-    "eslint-loader": "^1.9.0",
-    "webpack": "^3.10.0"
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-class-display-name": "^2.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "path": "^0.12.7",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
   }
 }

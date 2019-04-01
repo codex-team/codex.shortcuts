@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeX Shortcuts</title>
+    <script src="../dist/shortcuts.js"></script>
+</head>
+<body>
+<script>
+    new Shortcut({
+      name : 'CMD+A',
+      on : document.body,
+      callback: function() {
+        console.log('cmd+a');
+      }
+    })
+</script>
+</body>
+</html>

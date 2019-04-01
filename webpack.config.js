@@ -5,75 +5,69 @@
  * @copyright CodeX 2017
  */
 
+const path = require('path');
 const webpack = require('webpack');
 
-/**
- * Get package params
- */
-var pkg = require('./package');
-
-/**
- * Define entry point
- */
-var entry = './src/shortcuts.js';
 
 /**
  * @return {String} Bundle header with Module description
  */
-var bundleComment = require('./bundleComment.js');
+const bundleComment = require('./bundleComment.js');
 
 /**
- * Set bundle params
- *
- * filename       - main bundle file from package.json
- * library        - module name from package.json
- * libraryTarget  - "umd" is a way for your library to work with all the module
- *                  definitions (and where aren't modules at all).
- *                  It will work with CommonJS, AMD and as global variable.
+ * Final webpack config
  */
-var output = {
-    filename: pkg.main,
-    library: pkg.exportModuleName,
+var config = {
+  /**
+   * Entry point
+   */
+  entry: './src/shortcuts.js',
+  /**
+   * Set bundle params
+   *
+   * filename       - main bundle file from package.json
+   * library        - module name from package.json
+   * libraryTarget  - "umd" is a way for your library to work with all the module
+   *                  definitions (and where aren't modules at all).
+   *                  It will work with CommonJS, AMD and as global variable.
+   */
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'shortcuts.js',
+    library: 'Shortcut',
     libraryTarget: 'umd',
-};
-
-var useModule = {
+    libraryExport: 'default'
+  },
+  /**
+   * Tell webpack what directories should be searched when resolving modules.
+   */
+  resolve: {
+      modules: [path.join(__dirname, 'src'),  'node_modules'],
+      extensions: ['.js']
+  },
+  module: {
     rules: [
-        /**
-         * Process JS files
-         */
-        {
-            test : /\.js$/,
-            use : [
-                /** Babel loader */
-                {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [ 'env' ]
-                    }
-                },
-                /** ES lint For webpack build */
-                {
-                    loader: 'eslint-loader',
-                    options: {
-                        fix: true
-                    }
-                }
-            ]
-        }
+      /**
+       * Process JS files
+       */
+      {
+        test : /\.js$/,
+        exclude: /node_modules/,
+        use : [
+          {
+            loader: 'eslint-loader',
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            }
+          }
+        ]
+      }
     ]
-};
-
-/**
- * List of plugins to run
- */
-var plugins = [
-
-    /** Minify JS and CSS */
-    new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true
-    }),
-
+  },
+  plugins: [
     /** Block biuld if errors found */
     new webpack.NoEmitOnErrorsPlugin(),
 
@@ -82,20 +76,9 @@ var plugins = [
      * @type {String} — bundleComment
      */
     new webpack.BannerPlugin({
-        banner: bundleComment
+      banner: bundleComment
     })
-
-];
-
-/**
- * Final webpack config
- */
-var config = {
-    entry: entry,
-    output: output,
-    module: useModule,
-    plugins: plugins,
-    watch: true
+  ],
 };
 
 module.exports = config;
