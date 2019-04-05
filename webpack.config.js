@@ -55,14 +55,14 @@ var config = {
         test : /\.js$/,
         exclude: /node_modules/,
         use : [
-          // {
-          //   loader: 'eslint-loader',
-          // },
           {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
             }
+          },
+          {
+            loader: 'eslint-loader',
           }
         ]
       }

@@ -25,69 +25,76 @@
  */
 
 /**
- * List of key codes
- */
-const keyCodes = {
-  '0' : 48,
-  '1' : 49,
-  '2' : 50,
-  '3' : 51,
-  '4' : 52,
-  '5' : 53,
-  '6' : 54,
-  '7' : 55,
-  '8' : 56,
-  '9' : 57,
-  'A' : 65,
-  'B' : 66,
-  'C' : 67,
-  'D' : 68,
-  'E' : 69,
-  'F' : 70,
-  'G' : 71,
-  'H' : 72,
-  'I' : 73,
-  'J' : 74,
-  'K' : 75,
-  'L' : 76,
-  'M' : 77,
-  'N' : 78,
-  'O' : 79,
-  'P' : 80,
-  'Q' : 81,
-  'R' : 82,
-  'S' : 83,
-  'T' : 84,
-  'U' : 85,
-  'V' : 86,
-  'W' : 87,
-  'X' : 88,
-  'Y' : 89,
-  'Z' : 90,
-  'BACKSPACE' : 8,
-  'ENTER'     : 13,
-  'ESCAPE'    : 27,
-  'LEFT'      : 37,
-  'UP'        : 38,
-  'RIGHT'     : 39,
-  'DOWN'      : 40,
-  'INSERT'    : 45,
-  'DELETE'    : 46
-};
-
-const supportedCommands = {
-  'SHIFT' : [ 'SHIFT' ],
-  'CMD' : ['CMD', 'CONTROL', 'COMMAND', 'WINDOWS', 'CTRL'],
-  'ALT' : ['ALT', 'OPTION']
-};
-
-/**
  * @class Shortcut
  * @classdesc Callback will be fired with two params:
  *   - event: standard keyDown param
  *   - target: element which registered on shortcut creation
  */
-export default class Shortcut {
+class Shortcut {
+  /**
+   * @return {{SHIFT: string[], CMD: string[], ALT: string[]}}
+   */
+  static get supportedCommands() {
+    return {
+      'SHIFT': [ 'SHIFT' ],
+      'CMD': ['CMD', 'CONTROL', 'COMMAND', 'WINDOWS', 'CTRL'],
+      'ALT': ['ALT', 'OPTION'],
+    };
+  }
+
+  /**
+   * List of key codes
+   */
+  static get keyCodes() {
+    return {
+      '0' : 48,
+      '1' : 49,
+      '2' : 50,
+      '3' : 51,
+      '4' : 52,
+      '5' : 53,
+      '6' : 54,
+      '7' : 55,
+      '8' : 56,
+      '9' : 57,
+      'A' : 65,
+      'B' : 66,
+      'C' : 67,
+      'D' : 68,
+      'E' : 69,
+      'F' : 70,
+      'G' : 71,
+      'H' : 72,
+      'I' : 73,
+      'J' : 74,
+      'K' : 75,
+      'L' : 76,
+      'M' : 77,
+      'N' : 78,
+      'O' : 79,
+      'P' : 80,
+      'Q' : 81,
+      'R' : 82,
+      'S' : 83,
+      'T' : 84,
+      'U' : 85,
+      'V' : 86,
+      'W' : 87,
+      'X' : 88,
+      'Y' : 89,
+      'Z' : 90,
+      'BACKSPACE' : 8,
+      'ENTER'     : 13,
+      'ESCAPE'    : 27,
+      'LEFT'      : 37,
+      'UP'        : 38,
+      'RIGHT'     : 39,
+      'DOWN'      : 40,
+      'INSERT'    : 45,
+      'DELETE'    : 46
+    };
+  }
+
   /**
    * @constructor
    *
@@ -97,6 +104,7 @@ export default class Shortcut {
   constructor(shortcut) {
     this.commands = {};
     this.keys = {};
+    this.name = shortcut.name;
 
     this.parseShortcutName(shortcut.name);
 
@@ -115,14 +123,13 @@ export default class Shortcut {
    */
   parseShortcutName(shortcut) {
     shortcut = shortcut.split('+');
-
     for (let key = 0; key < shortcut.length; key++) {
       shortcut[key] = shortcut[key].toUpperCase();
 
       let isCommand = false;
 
-      for (let command in supportedCommands) {
-        if (supportedCommands[command].includes(shortcut[key])) {
+      for (let command in Shortcut.supportedCommands) {
+        if (Shortcut.supportedCommands[command].includes(shortcut[key])) {
           this.commands[command] = true;
           isCommand = true;
           break;
@@ -131,6 +138,12 @@ export default class Shortcut {
 
       if (!isCommand) {
         this.keys[shortcut[key]] = true;
+      }
+    }
+
+    for(let command in Shortcut.supportedCommands) {
+      if (!this.commands[command]) {
+        this.commands[command] = false;
       }
     }
   }
@@ -153,14 +166,15 @@ export default class Shortcut {
       allCommandsPassed = true;
 
     for (command in this.commands) {
-      allCommandsPassed = allCommandsPassed && passed[command];
+      if (this.commands[command] !== passed[command]) {
+        allCommandsPassed = false;
+      }
     }
-
     let key,
       allKeysPassed = true;
 
     for (key in this.keys) {
-      allKeysPassed = allKeysPassed && (event.keyCode === keyCodes[key]);
+      allKeysPassed = allKeysPassed && (event.keyCode === Shortcut.keyCodes[key]);
     }
 
     if (allCommandsPassed && allKeysPassed) {
@@ -175,3 +189,5 @@ export default class Shortcut {
     this.element.removeEventListener('keydown', this.executeShortcut);
   }
 }
+
+export default Shortcut;
