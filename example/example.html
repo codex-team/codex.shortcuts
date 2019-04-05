@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeX Shortcuts</title>
+    <script src="../dist/shortcuts.js"></script>
+</head>
+<body>
+<script>
+    new Shortcut({
+      name : 'SHIFT+CMD+ENTER',
+      on : document.body,
+      callback: function() {
+        console.log('SHIFT+CMD+ENTER');
+      }
+    });
+
+    new Shortcut({
+      name : 'SHIFT+ENTER',
+      on: document.body,
+      callback: function() {
+        console.log('SHIFT+ENTER');
+      }
+    });
+
+    new Shortcut({
+      name: 'CMD+A',
+      on: document.body,
+      callback: function() {
+        console.log('CMD+A');
+      }
+    });
+
+    new Shortcut({
+      name: 'SHIFT+ALT',
+      on: document.body,
+      callback: function() {
+        console.log('SHIFT+ALT');
+      }
+    });
+</script>
+</body>
+</html>
