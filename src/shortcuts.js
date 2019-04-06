@@ -1,12 +1,4 @@
 /**
- * CodeX Shortcut module
- * Used to create shortcuts on element
- *
- * @copyright CodeX <team@codex.so>
- * @license MIT https://github.com/codex-team/dispatcher/LICENSE
- * @author @khaydarovm https://github.com/khaydarov
- * @version 1.0.0
- *
  * @example
  * new Shortcut({
  *   name : 'CMD+S',
