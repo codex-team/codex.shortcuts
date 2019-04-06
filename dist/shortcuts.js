@@ -11,7 +11,7 @@
  * Used to create shortcuts on element
  *
  * @copyright CodeX <team@codex.so>
- * @license MIT https://github.com/codex-team/dispatcher/LICENSE
+ * @license MIT https://github.com/codex-team/codex.shortcuts/blob/master/LICENSE
  * @author @khaydarovm https://github.com/khaydarov
  * @version 1.0.0
  *
