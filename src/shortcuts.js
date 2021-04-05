@@ -83,7 +83,8 @@ class Shortcut {
       'RIGHT'     : 39,
       'DOWN'      : 40,
       'INSERT'    : 45,
-      'DELETE'    : 46
+      'DELETE'    : 46,
+      '`': 192
     };
   }
 
